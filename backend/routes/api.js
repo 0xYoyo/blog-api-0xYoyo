@@ -22,7 +22,7 @@ router.put("/admin/post/:id", post_controller.post_publish_put); // Admin
 // GET request for one post.
 router.get("/post/:id", post_controller.post_detail); // User, also has comment list, and create comment
 
-// GET request for list of all unpublished posts.
+// GET request for list of all published posts.
 router.get("/posts", post_controller.post_list); // User
 
 // GET request for list of all posts.

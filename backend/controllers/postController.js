@@ -10,7 +10,7 @@ exports.index = asyncHandler(async (req, res, next) => {
 
 // Display list of all unpublished posts.
 exports.post_list = asyncHandler(async (req, res, next) => {
-  const allPosts = await Post.find({ published: false }).sort({
+  const allPosts = await Post.find({ published: true }).sort({
     timestamp: -1,
   });
   res.json(allPosts);
