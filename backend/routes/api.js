@@ -35,7 +35,7 @@ router.post("/post/:id/comment/", comment_controller.comment_create_post); // Us
 
 // DELETE request for deleting comment.
 router.delete(
-  "/post/:id/comment/:commentid",
+  "/admin/post/:id/comment/:commentid",
   comment_controller.comment_delete
 ); // Admin
 
