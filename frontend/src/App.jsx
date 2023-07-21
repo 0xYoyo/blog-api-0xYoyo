@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./styles/App.css";
 import { API_URL } from "./utils/config";
 import { Link } from "react-router-dom";
+import Nav from "./components/Nav";
 
 function App() {
   const [homePosts, setHomePosts] = useState([]);
@@ -22,14 +23,25 @@ function App() {
 
   return (
     <div className="App">
-      <ul className="homePosts">
-        {homePosts.map((post) => (
-          <li key={post._id}>
-            <Link to={`posts/${post._id}`}>{post.title}</Link>
-          </li>
-        ))}
-      </ul>
-      <Link to={`posts`}>Discover All Posts</Link>
+      <Nav />
+      <div className="content">
+        <h1>Latest Posts</h1>
+        <ul className="homePosts">
+          {homePosts.map((post) => (
+            <li key={post._id}>
+              <Link to={`posts/${post._id}`}>
+                <div className="card">
+                  <h2>{post.title}</h2>
+                  <p>{post.postContent.substr(0, 200)}</p>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <button>
+          <Link to={`posts`}>Discover All Posts</Link>
+        </button>
+      </div>
     </div>
   );
 }

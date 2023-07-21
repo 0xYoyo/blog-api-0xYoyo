@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/App.css";
 import { API_URL } from "../utils/config";
 import { Link } from "react-router-dom";
+import Nav from "./Nav";
 
 function AllPosts() {
   const [allPosts, setAllPosts] = useState([]);
@@ -22,6 +23,7 @@ function AllPosts() {
 
   return (
     <div className="AllPosts">
+      <Nav />
       <ul className="allPosts">
         {allPosts.map((post) => (
           <li key={post._id}>

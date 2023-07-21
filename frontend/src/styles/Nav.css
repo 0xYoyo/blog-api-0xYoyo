@@ -1,0 +1,23 @@
+.Nav {
+  height: 10vh;
+  position: sticky;
+  top: 0;
+  background-color: #6f99d1;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 2rem;
+  box-shadow: 0 0 8px whitesmoke;
+}
+
+.links {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.2rem;
+}
+
+.logoName {
+  font-size: 1.5rem;
+}

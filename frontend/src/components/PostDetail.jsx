@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import "../styles/App.css";
 import { API_URL } from "../utils/config";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CommentForm from "./CommentForm";
+import Nav from "./Nav";
 // import { v4 as uuidv4 } from "uuid";
 
 function PostDetail() {
@@ -31,8 +32,7 @@ function PostDetail() {
 
   return (
     <div className="PostDetails">
-      <Link to={`/`}>Home</Link>
-
+      <Nav />
       <div className="postDetails">
         <div>
           <h1>{postDetails.title}</h1>
