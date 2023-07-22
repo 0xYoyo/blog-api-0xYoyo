@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import "../styles/App.css";
+import "../styles/AllPosts.css";
 import { API_URL } from "../utils/config";
 import { Link } from "react-router-dom";
+import { DateTime } from "luxon";
 import Nav from "./Nav";
 
 function AllPosts() {
@@ -24,14 +25,24 @@ function AllPosts() {
   return (
     <div className="AllPosts">
       <Nav />
-      <ul className="allPosts">
-        {allPosts.map((post) => (
-          <li key={post._id}>
-            <Link to={`/posts/${post._id}`}>{post.title}</Link>
-          </li>
-        ))}
-      </ul>
-      <Link to={`/`}>Home</Link>
+      <div className="content">
+        <h1>All Posts</h1>
+        <ul className="allPosts">
+          {allPosts.map((post) => (
+            <li key={post._id}>
+              <Link to={`/posts/${post._id}`}>
+                <div className="card">
+                  <div className="top">
+                    <h2>{post.title}</h2>
+                    <p>{DateTime.fromISO(post.timestamp).toLocaleString()}</p>
+                  </div>
+                  <p>{post.postContent.substr(0, 200) + "..."}</p>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

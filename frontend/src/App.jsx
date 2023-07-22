@@ -3,6 +3,7 @@ import "./styles/App.css";
 import { API_URL } from "./utils/config";
 import { Link } from "react-router-dom";
 import Nav from "./components/Nav";
+import { DateTime } from "luxon";
 
 function App() {
   const [homePosts, setHomePosts] = useState([]);
@@ -31,8 +32,11 @@ function App() {
             <li key={post._id}>
               <Link to={`posts/${post._id}`}>
                 <div className="card">
-                  <h2>{post.title}</h2>
-                  <p>{post.postContent.substr(0, 200)}</p>
+                  <div className="top">
+                    <h2>{post.title}</h2>
+                    <p>{DateTime.fromISO(post.timestamp).toLocaleString()}</p>
+                  </div>
+                  <p>{post.postContent.substr(0, 200) + "..."}</p>
                 </div>
               </Link>
             </li>
