@@ -1,32 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/App.css";
 import { API_URL } from "../utils/config";
-import { useEffect } from "react";
-import { isLoggedIn, logout } from "../utils/authService";
+import { setLocalStorage } from "../utils/authService";
 
-function NewPost() {
+function Login() {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const { fetch: originalFetch } = window;
-    window.fetch = async (...args) => {
-      let [resource, options] = args;
-      const jwtToken = localStorage.getItem("jwt_token");
-      if (jwtToken) {
-        const loginStatus = isLoggedIn();
-        if (loginStatus === true) {
-          options.headers = { ...options.headers, Authorization: jwtToken };
-        } else {
-          logout();
-          navigate("/login");
-        }
-      } else {
-        navigate("/login");
-      }
-      const response = await originalFetch(resource, options);
-      return response;
-    };
-  });
 
   async function postFormDataAsJson({ url, formData }) {
     const plainFormData = Object.fromEntries(formData.entries());
@@ -38,6 +16,7 @@ function NewPost() {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
+
       body: formDataJsonString,
     };
 
@@ -59,6 +38,7 @@ function NewPost() {
       const formData = new FormData(form);
       const responseData = await postFormDataAsJson({ url, formData });
       console.log({ responseData });
+      setLocalStorage(responseData);
       form.reset();
       navigate("/");
     } catch (error) {
@@ -68,20 +48,20 @@ function NewPost() {
 
   return (
     <div className="PostForm">
-      <h1>New Post</h1>
+      <h1>Log In</h1>
       <form
-        action={`${API_URL}/admin/post`}
+        action={`${API_URL}/admin/login`}
         method="POST"
         onSubmit={handleSubmit}
       >
         <ul>
           <li>
-            <label htmlFor="title">Title:</label>
-            <input type="text" id="title" name="title" required />
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" name="name" required />
           </li>
           <li>
-            <label htmlFor="postContent">Content:</label>
-            <input type="text" id="postContent" name="postContent" required />
+            <label htmlFor="password">Password:</label>
+            <input type="text" id="password" name="password" required />
           </li>
         </ul>
         <button>Submit</button>
@@ -90,4 +70,4 @@ function NewPost() {
   );
 }
 
-export default NewPost;
+export default Login;

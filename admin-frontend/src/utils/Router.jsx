@@ -2,6 +2,7 @@ import App from "../App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PostDetail from "../components/PostDetail.jsx";
 import NewPost from "../components/NewPost.jsx";
+import Login from "../components/Login.jsx";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const Router = () => {
     {
       path: "/posts/:id",
       element: <PostDetail />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
     },
   ]);
 

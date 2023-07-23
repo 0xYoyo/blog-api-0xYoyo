@@ -9,7 +9,7 @@ function PostDetail() {
   const { id } = useParams();
 
   const getPostDetails = async (id) => {
-    const response = await fetch(`${API_URL}/post/${id}`);
+    const response = await fetch(`${API_URL}/post/${id}`, {});
     return response.json();
   };
 
