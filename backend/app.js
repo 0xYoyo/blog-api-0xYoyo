@@ -3,6 +3,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 var indexRouter = require("./routes/index");
@@ -21,6 +22,10 @@ async function main() {
 }
 
 // Set up passport
+const passport = require("passport");
+require("./config/passport")(passport);
+
+app.use(passport.initialize());
 
 app.use(cors());
 app.use(logger("dev"));
