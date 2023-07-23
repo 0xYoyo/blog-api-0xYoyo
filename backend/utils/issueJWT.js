@@ -10,7 +10,6 @@ const issueJWT = (admin) => {
 
   const payload = {
     sub: _id,
-    iat: Date.now(),
   };
 
   const signedToken = jsonwebtoken.sign(payload, privateKey, {

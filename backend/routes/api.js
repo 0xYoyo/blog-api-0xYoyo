@@ -60,8 +60,9 @@ router.delete(
 
 /// AUTHENTICATION ROUTES ///
 
+// Commented to prevent further admins
 // POST request for registering.
-router.post("/admin/register", auth_controller.register_post); // Admin
+// router.post("/admin/register", auth_controller.register_post); // Admin
 
 // POST request for logging in.
 router.post("/admin/login", auth_controller.login_post); // Admin
