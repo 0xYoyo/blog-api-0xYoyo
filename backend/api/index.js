@@ -6,8 +6,8 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-var indexRouter = require("./routes/index");
-const apiRouter = require("./routes/api");
+var indexRouter = require("../routes/index");
+const apiRouter = require("../routes/api");
 
 var app = express();
 
@@ -23,7 +23,7 @@ async function main() {
 
 // Set up passport
 const passport = require("passport");
-require("./config/passport")(passport);
+require("../config/passport")(passport);
 
 app.use(passport.initialize());
 
