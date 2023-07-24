@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "vercel-build": "node ./bin/www",
+    "vercel-build": "node ./index",
     "devstart": "nodemon ./bin/www",
     "serverstart": "DEBUG=backend:* npm run devstart"
   },
